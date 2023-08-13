@@ -2,6 +2,14 @@
 {% block title %}
     <title>Регистрация</title>
 {% endblock %}
-{% block content %}
+{% block auth %}
+    <form action="{% url 'register'%}" method="post">
+        {{ form }}
+        {% csrf_token %}
+        <button type="submit">submit</button>
+    </form>
+{% endblock %}
 
+{% block noauth %}
+    <h3>Для просмотра информации страницы вам необходимо войти в систему</h3>
 {% endblock %}

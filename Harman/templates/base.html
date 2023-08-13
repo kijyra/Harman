@@ -1,20 +1,45 @@
-<!DOCTYPE html>
+{% load static %}
 
 <head>
     <meta charset="UTF-8" />
-    <title> title </title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <title>{% block title %} {% endblock %} </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
+<body>
+    <header class="header">
+        <nav>
+            <div class="logo">
+                <a href="{% url 'home'%}">Project.<span>D</span></a>
+            </div>
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="menu-icon">&#9776;</label>
+            <ul class="menu">
+                <li><a href="#">Первая</a></li>
+                <li><a href="#">Вторая</a></li>
+                <li><a href="#">Третья</a></li>
+                {% if user.is_authenticated %}
+                    <li>
+                        <ul>
+                            <li><a href="{% url 'register' %}">User: {{ user }}</a></li>
+                            <li><a href="{% url 'logout' %}">Выйти</a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                <li><a href="{% url 'login' %}">Войти</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
 
-<body class="container">
-    <ul class="list-group">
-        <li class="list-group-item">
-            User: {{ user }} 
-        </li>
-        <li class="list-group-item">
-            <a href="{% url 'home' %}">Home</a>
-        </li>
-    </ul>
-    {% block content %}
-    {% endblock %}
+    {% static 'css/base.css' %}
+    {% if user.is_authenticated %}
+        {% block auth %}
+        {% endblock %}
+    {% else %}
+        {% block noauth %}
+        {% endblock %}
+    {% endif %}
+
 </body>
+</html>

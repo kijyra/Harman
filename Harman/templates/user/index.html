@@ -1,9 +1,11 @@
-<html>
-<head><title></title></head>
+{% extends 'base.html' %}
+{% block title %}
+<title>Домашняя</title>
+{% endblock %}
+{% block auth %}
+    {{ content }}
+{% endblock %}
 
-<body>
-
-{{ content }}
-
-</body>
-</html>
+{% block noauth %}
+    {{ content }}
+{% endblock %}
