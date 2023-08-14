@@ -5,6 +5,7 @@
     <title>{% block title %} {% endblock %} </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block link %} {% endblock %}
 </head>
 <body>
     <header class="header">
@@ -15,7 +16,7 @@
             <input type="checkbox" id="menu-toggle">
             <label for="menu-toggle" class="menu-icon">&#9776;</label>
             <ul class="menu">
-                <li><a href="#">Первая</a></li>
+                <li><a href="connection/">Подключения</a></li>
                 <li><a href="#">Вторая</a></li>
                 <li><a href="#">Третья</a></li>
                 {% if user.is_authenticated %}
@@ -31,15 +32,14 @@
             </ul>
         </nav>
     </header>
-
-    {% static 'css/base.css' %}
-    {% if user.is_authenticated %}
-        {% block auth %}
-        {% endblock %}
-    {% else %}
-        {% block noauth %}
-        {% endblock %}
-    {% endif %}
-
+    <div class="margin">
+        {% if user.is_authenticated %}
+            {% block auth %}
+            {% endblock %}
+        {% else %}
+            {% block noauth %}
+            {% endblock %}
+        {% endif %}
+    </div>
 </body>
 </html>
