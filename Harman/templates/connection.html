@@ -16,7 +16,7 @@
                     <td>Расположение</td>
                 </tr>
                 {% for i in connections %}
-                    {% if i.location == "{{locate}}" %}
+                    {% if i.location in locate %}
                         <tr>
                             {% if i.rdp %}
                                 <td>{{ i.user }}</b></td>
@@ -34,126 +34,6 @@
                 {% endfor %}
             </table>
         {% endif %}
-    {% endfor %}
-
-    <br><h4>АБК</h4>
-    <table class="table">
-        <tr>
-            <td>Пользователь</td>
-            <td>Расположение</td>
-        </tr>
-        {% for i in connections %}
-            {% if i.location == "АБК" %}
-                <tr>
-                    {% if i.rdp %}
-                        <td>{{ i.user }}</b></td>
-                        <td>{{i.location}}</td>
-                        <td><a href="vnc://{{i.ip}}" class="btn" target="_blank">VNC</a></td>
-                        <td><a href="rdps://{{i.ip}}" class="btn" target="_blank">Подсмотреть</a></td>
-                        <td><a href="rdpc://{{i.ip}}" class="btn" target="_blank">Подключиться</a></td>
-                    {% else %}
-                        <td>{{ i.user }}</b></td>
-                        <td>{{i.location}}</td>
-                        <td><a href="vnc://{{i.ip}}" class="btn" target="_blank">VNC</a></td>
-                    {% endif %}
-                </tr>
-            {% endif %}
-        {% endfor %}
-    </table>
-    <br><h4>Склад</h4>
-    <table class="table">
-        <tr>
-            <td>Пользователь</td>
-            <td>Расположение</td>
-        </tr>
-        {% for i in connections %}
-            {% if i.location == "Склад" %}
-                <tr>
-                    {% if i.rdp %}
-                        <td>{{ i.user }}</b></td>
-                        <td>{{i.location}}</td>
-                        <td><a href="vnc://{{i.ip}}" class="btn" target="_blank">VNC</a></td>
-                        <td><a href="rdps://{{i.ip}}" class="btn" target="_blank">Подсмотреть</a></td>
-                        <td><a href="rdpc://{{i.ip}}" class="btn" target="_blank">Подключиться</a></td>
-                    {% else %}
-                        <td>{{ i.user }}</b></td>
-                        <td>{{i.location}}</td>
-                        <td><a href="vnc://{{i.ip}}" class="btn" target="_blank">VNC</a></td>
-                    {% endif %}
-                </tr>
-            {% endif %}
-        {% endfor%}
-    </table>
-    <br><h4>Холодильник</h4>
-<table class="table">
-    <tr>
-        <td>Пользователь</td>
-        <td>Расположение</td>
-    </tr>
-    {% for i in connections %}
-        {% if i.location == "Холодильник" %}
-            <tr>
-                {% if i.rdp %}
-                    <td>{{ i.user }}</b></td>
-                    <td>{{i.location}}</td>
-                    <td><a href="vnc://{{i.ip}}" class="btn" target="_blank">VNC</a></td>
-                    <td><a href="rdps://{{i.ip}}" class="btn" target="_blank">Подсмотреть</a></td>
-                    <td><a href="rdpc://{{i.ip}}" class="btn" target="_blank">Подключиться</a></td>
-                {% else %}
-                    <td>{{forloop.counter}}.{{ i.user }}</b></td>
-                    <td>{{i.location}}</td>
-                    <td><a href="vnc://{{i.ip}}" class="btn" target="_blank">VNC</a></td>
-                {% endif %}
-            </tr>
-        {% endif %}
-    {% endfor %}
-</table>
-<br><h4>Бухгалтерия</h4>
-<table class="table">
-    <tr>
-        <td>Пользователь</td>
-        <td>Расположение</td>
-    </tr>
-    {% for i in connections %}
-        <tr>
-            {% if i.location == "Бухгалтерия" %}
-                {% if i.rdp %}
-                    <td>{{ i.user }}</b></td>
-                    <td>{{i.location}}</td>
-                    <td><a href="vnc://{{i.ip}}" class="btn" target="_blank">VNC</a></td>
-                    <td><a href="rdps://{{i.ip}}" class="btn" target="_blank">Подсмотреть</a></td>
-                    <td><a href="rdpc://{{i.ip}}" class="btn" target="_blank">Подключиться</a></td>
-                {% else %}
-                    <td>{{ i.user }}</b></td>
-                    <td>{{i.location}}</td>
-                    <td><a href="vnc://{{i.ip}}" class="btn" target="_blank">VNC</a></td>
-                {% endif %}
-            {% endif %}
-        </tr>
-    {% endfor %}
-    </table>
-    <br><h4>Продажи</h4>
-    <table class="table">
-        <tr>
-            <td>Пользователь</td>
-            <td>Расположение</td>
-        </tr>
-        {% for i in connections %}
-            {% if i.location == "Продажи" %}
-                <tr>
-                    {% if i.rdp %}
-                        <td>{{ i.user }}</b></td>
-                        <td>{{i.location}}</td>
-                        <td><a href="vnc://{{i.ip}}" class="btn" target="_blank">VNC</a></td>
-                        <td><a href="rdps://{{i.ip}}" class="btn" target="_blank">Подсмотреть</a></td>
-                        <td><a href="rdpc://{{i.ip}}" class="btn" target="_blank">Подключиться</a></td>
-                    {% else %}
-                        <td>{{ i.user }}</b></td>
-                        <td>{{i.location}}</td>
-                        <td><a href="vnc://{{i.ip}}" class="btn" target="_blank">VNC</a></td>
-                    {% endif %}
-            {% endif %}
-            </tr>
     {% endfor %}
 </table>
 {% endblock %}
