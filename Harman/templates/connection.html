@@ -2,13 +2,27 @@
 {% load static %}
 {% block title %} Подключения {% endblock %}
 {% block link %}
-<link rel="stylesheet" href="{% static 'css/connection.css' %}">
+    <link rel="stylesheet" href="{% static 'css/connection.css' %}">
+    <script src="{% static 'js/connection.js' %}"></script>
 {% endblock %}
 {% block auth %}
 
+<!-- Tab links -->
+<div class="tab">
     {% for locate in location_connections %}
         {% if locate == "IT" %}
         {% else %}
+            <button class="tablinks" onclick="openCity(event, '{{ locate }}')">{{ locate }}</button>
+        {% endif %}
+    {% endfor %}
+</div>
+
+<!-- Tab content -->
+
+  {% for locate in location_connections %}
+        {% if locate == "IT" %}
+        {% else %}
+            <div id="{{ locate }}" class="tabcontent">
             <br><h4>{{ locate }}</h4>
             <table class="table">
                 <tr>
@@ -33,9 +47,11 @@
                     {% endif %}
                 {% endfor %}
             </table>
+
+                </div>
         {% endif %}
     {% endfor %}
-</table>
+
 {% endblock %}
 
 {% block noauth %}
