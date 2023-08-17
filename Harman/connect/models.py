@@ -11,5 +11,6 @@ class Printer(models.Model):
 class Connection(models.Model):
     user = models.CharField(max_length=40, blank=False, primary_key=True)
     location = models.CharField(max_length=40)
+    cabinet = models.CharField(max_length=40)
     rdp = models.BooleanField(default=True)
     ip = models.CharField(max_length=15)

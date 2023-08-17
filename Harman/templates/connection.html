@@ -9,32 +9,30 @@
 
 <!-- Tab links -->
 <div class="tab">
-    {% for locate in location_connections %}
+    {% for locate in locations %}
         {% if locate == "IT" %}
         {% else %}
-            <button class="tablinks" onclick="openCity(event, '{{ locate }}')">{{ locate }}</button>
+            <button class="tablinks" onclick="openPage(event, '{{ locate }}')">{{ locate }}</button>
         {% endif %}
     {% endfor %}
+    <button class="tablinks" onclick="openPage(event, 'Принтеры')">Принтеры</button>
 </div>
 
-<!-- Tab content -->
-
-  {% for locate in location_connections %}
-        {% if locate == "IT" %}
-        {% else %}
-            <div id="{{ locate }}" class="tabcontent">
-            <br><h4>{{ locate }}</h4>
+{% for locate in locations %}
+    {% if locate == "IT" %}
+    {% else %}
+        <div id="{{ locate }}" class="tabcontent">
+        {% for cabinet in cabinets %}
+            <h4>{{ cabinet }}</h4>
             <table id="table">
-                <tr>
-                    <td>Пользователь</td>
-                    <td>Расположение</td>
-                </tr>
-                {% for i in connections %}
-                    {% if i.location in locate %}
-                        <tr>
+            <tr><td>Пользователь</td>
+            <td>Расположение</td></tr>
+            {% for i in connections %}
+                {% if cabinet == i.cabinet and i.location in locate %}
+                            <tr>
                             {% if i.rdp %}
                                 <td>{{ i.user }}</b></td>
-                                <td>{{i.location}}</td>
+                                <td>{{ i.location }}</td>
                                 <td><a href="vnc://{{i.ip}}" class="btn" target="_blank">VNC</a></td>
                                 <td><a href="rdps://{{i.ip}}" class="btn" target="_blank">Подсмотреть</a></td>
                                 <td><a href="rdpc://{{i.ip}}" class="btn" target="_blank">Подключиться</a></td>
@@ -43,14 +41,14 @@
                                 <td>{{i.location}}</td>
                                 <td><a href="vnc://{{i.ip}}" class="btn" target="_blank">VNC</a></td>
                             {% endif %}
-                        </tr>
-                    {% endif %}
-                {% endfor %}
-            </table>
-
-                </div>
-        {% endif %}
-    {% endfor %}
+                            </tr>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        </table>
+        </div>
+    {% endif %}
+{% endfor %}
 
 {% endblock %}
 
